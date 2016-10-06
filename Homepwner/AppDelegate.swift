@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let itemStore : ItemStore = ItemStore(allItems: [])
+        let itemStore : ItemStore = ItemStore()
         let ivc : ItemsViewController = self.window?.rootViewController as! ItemsViewController
         
         ivc.itemStore = itemStore

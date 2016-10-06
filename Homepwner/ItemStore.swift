@@ -12,19 +12,7 @@ class ItemStore {
     
     var allItems = [Item]()
     
-    init(allItems : [Item])  {
-        
-        self.allItems = allItems
-        
-        for _ in 0...5 {
-            
-            self.createItems()
-            
-        }
-        
-    }
-    
-    func createItems() -> Item {
+    func createItem() -> Item {
         
         let newItem = Item.initWithRandomValues()
         
@@ -34,6 +22,25 @@ class ItemStore {
         
     }
     
+    func removeItem(_ item: Item) {
+        
+        let itemIndex = (allItems as NSArray).index(of: item)
+        allItems.remove(at: itemIndex)
+        
+    }
+    
+    func moveItemAtIndex(_ oldIndex : Int,
+                         newIndex : Int) {
+        if oldIndex == newIndex {
+            return
+        }
+        
+        let movedItem = allItems[oldIndex]
+        allItems.remove(at: oldIndex)
+        allItems.insert(movedItem, at: newIndex)
+        
+        
+    }
     
 }
 
