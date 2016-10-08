@@ -64,6 +64,22 @@ class ItemsViewController: UITableViewController {
         
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowItem" {
+            
+            guard let itemStore = self.itemStore else { return }
+            guard let row = self.tableView.indexPathForSelectedRow?.row else { return }
+            
+            let item : Item = itemStore.allItems[row]
+            
+            let dvc : DetailViewController = segue.destination as! DetailViewController
+            dvc.item = item
+            
+            
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         

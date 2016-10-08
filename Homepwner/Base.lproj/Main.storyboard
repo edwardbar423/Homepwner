@@ -85,6 +85,7 @@
                                     <outlet property="nameLabel" destination="MFK-vS-yLJ" id="Ddy-U6-3Dn"/>
                                     <outlet property="serialNumberLabel" destination="hCl-wq-wfH" id="taf-hV-jMh"/>
                                     <outlet property="valueLabel" destination="w00-ep-K0j" id="XUV-yx-XTP"/>
+                                    <segue destination="aMb-VP-U5L" kind="show" identifier="ShowItem" id="9tU-oM-cSL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -94,10 +95,10 @@
             </objects>
             <point key="canvasLocation" x="1136.8" y="-94.002998500749626"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="cmq-aU-STq">
             <objects>
-                <viewController id="aMb-VP-U5L" sceneMemberID="viewController">
+                <viewController id="aMb-VP-U5L" customClass="DetailViewController" customModule="Homepwner" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FEv-np-76M"/>
                         <viewControllerLayoutGuide type="bottom" id="MyX-0Q-FK6"/>
@@ -170,10 +171,16 @@
                             <constraint firstAttribute="trailingMargin" secondItem="9Zx-bo-Jxp" secondAttribute="trailing" id="vcX-db-HNc"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="KdT-44-9Kr" id="BUs-gU-LbZ"/>
+                        <outlet property="nameField" destination="u5z-s7-T8i" id="Oyc-4j-dUv"/>
+                        <outlet property="serialNumberField" destination="50C-Yj-s0U" id="hbi-d0-Pz6"/>
+                        <outlet property="valueField" destination="K84-x0-9w4" id="inb-3A-cgJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6Q-Bt-xK5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1904" y="-99"/>
+            <point key="canvasLocation" x="2119" y="-94"/>
         </scene>
     </scenes>
 </document>
