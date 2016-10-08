@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ItemsViewController: UITableViewController {
     
     var itemStore : ItemStore?
@@ -58,6 +59,9 @@ class ItemsViewController: UITableViewController {
         self.tableView.contentInset = insets
         self.tableView.scrollIndicatorInsets = insets
         
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 65
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -89,14 +93,22 @@ class ItemsViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { //Tell which cell to go to.
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //Tell which cell to go to.
         
-        let cell : UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
+        //Second of two reasons to use "!", used for forced casting.
+        
+        cell.updateLabels()
+        
         let item = self.itemStore?.allItems[indexPath.row]
         
         if let item = item, let valueInDollars = item.valueInDollars {
-            cell.textLabel?.text = item.name
-            cell.detailTextLabel?.text = "$\(valueInDollars)"
+            
+            cell.nameLabel.text = item.name
+            cell.serialNumberLabel.text = item.serialNumber
+            cell.valueLabel.text = "$\(valueInDollars)"
+            
         }
         
         return cell

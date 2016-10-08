@@ -16,6 +16,7 @@
 		49A424B41DA46A5900101C4F /* HomepwnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A424B31DA46A5900101C4F /* HomepwnerUITests.swift */; };
 		49A424C21DA4832800101C4F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A424C11DA4832800101C4F /* Item.swift */; };
 		49A424C41DA49F9000101C4F /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A424C31DA49F9000101C4F /* ItemStore.swift */; };
+		49CE8E271DA81056001EE6C6 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE8E261DA81056001EE6C6 /* ItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		49A424B51DA46A5900101C4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49A424C11DA4832800101C4F /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		49A424C31DA49F9000101C4F /* ItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
+		49CE8E261DA81056001EE6C6 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				49A424951DA46A5900101C4F /* ItemsViewController.swift */,
 				49A424C11DA4832800101C4F /* Item.swift */,
 				49A424C31DA49F9000101C4F /* ItemStore.swift */,
+				49CE8E261DA81056001EE6C6 /* ItemCell.swift */,
 				49A424971DA46A5900101C4F /* Main.storyboard */,
 				49A4249A1DA46A5900101C4F /* Assets.xcassets */,
 				49A4249C1DA46A5900101C4F /* LaunchScreen.storyboard */,
@@ -269,6 +272,7 @@
 				49A424C21DA4832800101C4F /* Item.swift in Sources */,
 				49A424C41DA49F9000101C4F /* ItemStore.swift in Sources */,
 				49A424941DA46A5900101C4F /* AppDelegate.swift in Sources */,
+				49CE8E271DA81056001EE6C6 /* ItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +517,7 @@
 				49A424BA1DA46A5900101C4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49A424BB1DA46A5900101C4F /* Build configuration list for PBXNativeTarget "HomepwnerTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +526,7 @@
 				49A424BD1DA46A5900101C4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49A424BE1DA46A5900101C4F /* Build configuration list for PBXNativeTarget "HomepwnerUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +535,7 @@
 				49A424C01DA46A5900101C4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
