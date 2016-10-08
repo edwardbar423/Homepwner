@@ -63,6 +63,13 @@ class ItemsViewController: UITableViewController {
         self.tableView.estimatedRowHeight = 65
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tableView.reloadData()
+        
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowItem" {
