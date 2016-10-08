@@ -12,52 +12,14 @@ import UIKit
 class ItemsViewController: UITableViewController {
     
     var itemStore : ItemStore?
-
-    @IBAction func toggleEditingMode(_ sender: UIButton) {
     
-        if self.isEditing {
-        
-        sender.setTitle("Edit", for: .normal)
-        self.setEditing(false, animated: true)
-        
-        } else {
-            
-            sender.setTitle("Done", for: .normal)
-            self.setEditing(true, animated: true)
-        }
-    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
-
-    
-    @IBAction func addNewItem(_ sender: AnyObject) {
-        
-        guard let itemStore = itemStore else {
-            
-            return
-            
-        }
-        
-        let newItem = itemStore.createItem()
-        
-        let itemIndex = (itemStore.allItems as NSArray).index(of: newItem)
-        let indexPath = NSIndexPath(row: itemIndex, section: 0)
-        
-        
-        
-        self.tableView.insertRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.automatic)
-        
-    }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let statusBarHeight : CGFloat = UIApplication.shared.statusBarFrame.size.height
-        let insets : UIEdgeInsets = UIEdgeInsetsMake(statusBarHeight, 0, 0, 0)
-        
-        self.tableView.contentInset = insets
-        self.tableView.scrollIndicatorInsets = insets
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 65
@@ -174,9 +136,26 @@ class ItemsViewController: UITableViewController {
             
             present(ac, animated: true, completion: nil)
     }
-}
-
-
+}    
+    
+    @IBAction func addNewItem(_ sender: AnyObject) {
+        
+        guard let itemStore = itemStore else {
+            
+            return
+            
+        }
+        
+        let newItem = itemStore.createItem()
+        
+        let itemIndex = (itemStore.allItems as NSArray).index(of: newItem)
+        let indexPath = NSIndexPath(row: itemIndex, section: 0)
+        
+        
+        
+        self.tableView.insertRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.automatic)
+        
+    }
 
 }
 
