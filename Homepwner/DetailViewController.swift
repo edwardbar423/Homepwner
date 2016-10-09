@@ -9,12 +9,16 @@
 import Foundation
 import UIKit
 
-class DetailViewController : UIViewController, UITextFieldDelegate {
+class DetailViewController : UIViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet var nameField: UITextField!
     @IBOutlet var serialNumberField: UITextField!
     @IBOutlet var valueField: UITextField!
     @IBOutlet var dateLabel: UILabel!
+    //ImageView
+    @IBOutlet var imageView: UIImageView!
+    
+    
     
     var item : Item? {
         didSet {
@@ -22,17 +26,25 @@ class DetailViewController : UIViewController, UITextFieldDelegate {
             self.navigationItem.title = item.name
         }
     }
+    var imageStore : ImageStore?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let item = item else { return }
         guard let valueInDollarsInt = item.valueInDollars else { return }
+            
         let valueInDollars = NSNumber(integerLiteral: valueInDollarsInt)
         
         self.nameField.text = item.name
         self.serialNumberField.text = item.serialNumber
         self.valueField.text = DetailViewController.valueFormatter.string(from: valueInDollars)
         self.dateLabel.text = DetailViewController.dateFormatter.string(from: item.dateCreated)
+        
+        if let key = item.itemKey {
+            let imageToDisplay: UIImage? = self.imageStore?.imageForKey(key as NSString)
+            self.imageView.image = imageToDisplay
+        }
+        
         
     }
     
@@ -78,12 +90,39 @@ class DetailViewController : UIViewController, UITextFieldDelegate {
         
         return true
     }
-    
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image : UIImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            return }
+        guard let item : Item = self.item else {
+            return }
+        guard let itemKey = item.itemKey else {
+            return }
+        
+        self.imageStore?.setImage(image, forKey: (itemKey as NSString))
+        self.imageView.image = image
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
     
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         
         self.view.endEditing(true)
         
+    }
+    
+    @IBAction func cameraButtonTapped(_ sender: UIBarButtonItem) {
+        
+        let ipc : UIImagePickerController = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            ipc.sourceType = .camera
+        } else {
+            ipc.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        }
+        
+        ipc.delegate = self
+        self.present(ipc, animated: true, completion: nil)
     }
     
     

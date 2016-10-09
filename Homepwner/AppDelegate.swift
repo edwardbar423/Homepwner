@@ -13,16 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let itemStore = ItemStore()
+        let imageStore = ImageStore()
         
         let navController : UINavigationController = self.window?.rootViewController as! UINavigationController
         let ivc : ItemsViewController = navController.topViewController as! ItemsViewController
         
         ivc.itemStore = itemStore
-        
+        ivc.imageStore = imageStore
         
         
         

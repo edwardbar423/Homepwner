@@ -23,18 +23,21 @@ class Item {
         
         let serial = (UUID().uuidString as NSString).substring(to: 5)
         let value = Int(arc4random_uniform(100))
+        let itemKey = UUID().uuidString
         
-        return Item(name: name, serialNumber: serial, valueInDollars: value, dateCreated: Date())
+        return Item(itemKey: itemKey, name: name, serialNumber: serial, valueInDollars: value, dateCreated: Date())
     }
     
+    let itemKey : String?
     let name : String?
     let serialNumber : String?
     let valueInDollars : Int?
     let dateCreated : Date
     
     
-    init(name : String? = "New Item", serialNumber : String? = "", valueInDollars : Int? = 0, dateCreated : Date = Date()) {
+    init(itemKey : String?, name : String? = "New Item", serialNumber : String? = "", valueInDollars : Int? = 0, dateCreated : Date = Date()) {
         
+        self.itemKey = itemKey
         self.name = name
         self.serialNumber = serialNumber
         self.valueInDollars = valueInDollars

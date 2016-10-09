@@ -12,6 +12,7 @@ import UIKit
 class ItemsViewController: UITableViewController {
     
     var itemStore : ItemStore?
+    var imageStore : ImageStore?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -32,7 +33,7 @@ class ItemsViewController: UITableViewController {
         self.tableView.reloadData()
         
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowItem" {
             
@@ -43,7 +44,7 @@ class ItemsViewController: UITableViewController {
             
             let dvc : DetailViewController = segue.destination as! DetailViewController
             dvc.item = item
-            
+            dvc.imageStore = self.imageStore
             
         }
         
@@ -62,7 +63,7 @@ class ItemsViewController: UITableViewController {
                                         newIndex : destinationIndexPath.row)
     }
     
-//Data Source methods below!
+    //Data Source methods below!
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {  //Number of rows in a tableView
         
@@ -99,7 +100,7 @@ class ItemsViewController: UITableViewController {
         return cell
         
     }
-   
+    
     override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCellEditingStyle,
                             forRowAt indexPath: IndexPath) {
@@ -107,10 +108,7 @@ class ItemsViewController: UITableViewController {
         if editingStyle == .delete {
             
             guard let itemStore = itemStore else {
-                
-                return
-                
-            }
+                return }
             
             let item = itemStore.allItems[indexPath.row]
             
@@ -127,16 +125,20 @@ class ItemsViewController: UITableViewController {
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             ac.addAction(cancelAction)
             
+            if let itemKey = item.itemKey {
+                self.imageStore?.deleteImageForKey(itemKey as NSString)
+            }
+            
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
                 self.itemStore!.removeItem(item)
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            
-        })
+                
+            })
             ac.addAction(deleteAction)
             
             present(ac, animated: true, completion: nil)
+        }
     }
-}    
     
     @IBAction func addNewItem(_ sender: AnyObject) {
         
@@ -156,7 +158,7 @@ class ItemsViewController: UITableViewController {
         self.tableView.insertRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.automatic)
         
     }
-
+    
 }
 
 

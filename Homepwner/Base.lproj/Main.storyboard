@@ -147,8 +147,25 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="248" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="uCB-nv-bgJ"/>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wod-os-6AS">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="i9u-7J-SbX"/>
+                                        </constraints>
+                                        <items>
+                                            <barButtonItem systemItem="camera" id="03a-Ro-ex4">
+                                                <connections>
+                                                    <action selector="cameraButtonTapped:" destination="aMb-VP-U5L" id="ktG-1v-jBl"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Wod-os-6AS" firstAttribute="leading" secondItem="9Zx-bo-Jxp" secondAttribute="leading" id="3rQ-rg-5Ky"/>
+                                    <constraint firstItem="Wod-os-6AS" firstAttribute="top" secondItem="uCB-nv-bgJ" secondAttribute="bottom" constant="8" id="DbH-W4-xdq"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wod-os-6AS" secondAttribute="bottom" id="eFq-ef-LOA"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wod-os-6AS" secondAttribute="trailing" id="g0e-sH-fhH"/>
                                     <constraint firstItem="u5z-s7-T8i" firstAttribute="leading" secondItem="50C-Yj-s0U" secondAttribute="leading" id="k38-rM-c4d"/>
                                     <constraint firstItem="50C-Yj-s0U" firstAttribute="leading" secondItem="K84-x0-9w4" secondAttribute="leading" id="oyW-Jf-9Tv"/>
                                 </constraints>
@@ -169,6 +186,7 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="dateLabel" destination="KdT-44-9Kr" id="BUs-gU-LbZ"/>
+                        <outlet property="imageView" destination="uCB-nv-bgJ" id="dYk-e8-C1f"/>
                         <outlet property="nameField" destination="u5z-s7-T8i" id="Oyc-4j-dUv"/>
                         <outlet property="serialNumberField" destination="50C-Yj-s0U" id="hbi-d0-Pz6"/>
                         <outlet property="valueField" destination="K84-x0-9w4" id="inb-3A-cgJ"/>
