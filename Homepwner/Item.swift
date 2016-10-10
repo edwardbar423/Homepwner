@@ -9,7 +9,7 @@
 import Foundation
 
 
-class Item {
+class Item : NSObject, NSCoding {
     
     static func initWithRandomValues() -> Item {
         
@@ -28,11 +28,11 @@ class Item {
         return Item(itemKey: itemKey, name: name, serialNumber: serial, valueInDollars: value, dateCreated: Date())
     }
     
-    let itemKey : String?
-    let name : String?
-    let serialNumber : String?
-    let valueInDollars : Int?
-    let dateCreated : Date
+    var itemKey : String?
+    var name : String?
+    var serialNumber : String?
+    var valueInDollars : Int?
+    var dateCreated : Date
     
     
     init(itemKey : String?, name : String? = "New Item", serialNumber : String? = "", valueInDollars : Int? = 0, dateCreated : Date = Date()) {
@@ -44,6 +44,28 @@ class Item {
         self.dateCreated = dateCreated
     }
     
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.name, forKey: "name")
+        aCoder.encode(self.dateCreated, forKey: "dateCreated")
+        aCoder.encode(self.itemKey, forKey: "itemKey")
+        aCoder.encode(self.serialNumber, forKey: "serialNumber")
+        aCoder.encode(self.valueInDollars, forKey: "valueInDollars")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        
+        name = aDecoder.decodeObject(forKey: "name") as? String
+        if let timeWizard = aDecoder.decodeObject(forKey: "dateCreated") as? Date {
+            dateCreated = timeWizard
+        }
+        else {
+            dateCreated = Date()
+        }
+        itemKey = aDecoder.decodeObject(forKey: "itemKey") as? String
+        serialNumber = aDecoder.decodeObject(forKey: "serialNumber") as? String
+        valueInDollars = aDecoder.decodeObject(forKey: "valueInDollars") as? Int
+        
+    }
     
 }
 

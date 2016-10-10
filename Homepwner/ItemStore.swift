@@ -11,6 +11,29 @@ import Foundation
 class ItemStore {
     
     var allItems = [Item]()
+    var itemArchiveURL : NSURL?
+    
+    init() {
+        let directories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        if let documentDirectory = directories.first {
+            itemArchiveURL = documentDirectory.appendingPathComponent("items.archive") as NSURL
+        }
+        
+        if let path = self.itemArchiveURL?.path {
+            NSKeyedUnarchiver.unarchiveObject(withFile: path)
+        }
+        
+    }
+    //MARK: Saving/Loading
+    func saveChanges() -> Bool {
+        
+        print("Saving the store to \(self.itemArchiveURL)")
+        
+        if let itemArchiveURL = self.itemArchiveURL?.path {
+            return NSKeyedArchiver.archiveRootObject(self.allItems, toFile: itemArchiveURL)
+        }
+        return true
+    }
     
     func createItem() -> Item {
         
