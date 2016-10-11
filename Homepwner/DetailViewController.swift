@@ -99,7 +99,7 @@ class DetailViewController : UIViewController, UINavigationControllerDelegate, U
         guard let itemKey = item.itemKey else {
             return }
         
-        self.imageStore?.setImage(image, forKey: (itemKey as NSString))
+        self.imageStore?.setImage(image, forKey: (itemKey as NSString) as String)
         self.imageView.image = image
         
         self.dismiss(animated: true, completion: nil)
